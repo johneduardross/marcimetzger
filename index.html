@@ -7,10 +7,14 @@
 	<title>Marci Metzger Homes</title>
 	<style>
 		:root {
-			--ink: #202a3a;
-			--muted: #687487;
-			--accent: #6b5cff;
-			--soft: #f5f6fb;
+			--ink: #344454;
+			--muted: #697887;
+			--accent: #527d98;
+			--accent-hover: #41677f;
+			--soft: #f1f5f8;
+			--paper: #fff;
+			--line: #e0e7ed;
+			--field-border: #ccd7e0;
 			--radius: 12px;
 		}
 		* {
@@ -33,21 +37,53 @@
 			margin: 0 auto;
 		}
 		header {
-			border-bottom: 1px solid #e8eaf0;
+			border-bottom: 1px solid var(--line);
 		}
 		nav {
-			min-height: 72px;
+			position: relative;
+			min-height: 80px;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			gap: 24px;
 		}
-		.brand {
-			font-size: 1.2rem;
-			font-weight: 800;
-			letter-spacing: -.05em;
+		.nav-toggle {
+			display: none;
+			width: 44px;
+			height: 44px;
+			padding: 10px;
+			border: 1px solid var(--field-border);
+			border-radius: var(--radius);
+			background: var(--paper);
+			color: var(--ink);
+			cursor: pointer;
 		}
-		.brand span, .eyebrow {
+		.nav-toggle span {
+			display: block;
+			height: 2px;
+			margin: 4px 0;
+			background: currentColor;
+		}
+		.nav-toggle:focus-visible, .nav-menu a:focus-visible {
+			outline: 3px solid var(--accent);
+			outline-offset: 3px;
+		}
+		.nav-menu {
+			display: flex;
+			align-items: center;
+			gap: 26px;
+		}
+		.brand {
+			display: flex;
+			align-items: center;
+		}
+		.brand img {
+			display: block;
+			width: 210px;
+			max-height: 66px;
+			object-fit: contain;
+		}
+		.eyebrow {
 			color: var(--accent);
 		}
 		.links {
@@ -63,18 +99,21 @@
 		.nav-button {
 			padding: 9px 16px;
 			border-radius: var(--radius);
-			background: var(--ink);
-			color: white;
-			font-weight: 600;
+			background: var(--accent);
+			color: var(--paper);
+			font-weight: 550;
 		}
 		.hero {
 			padding: 110px 0 118px;
-			background: radial-gradient(ellipse at 82% 15%, #eae7ff, transparent 34%), var(--soft);
+			background:
+				linear-gradient(90deg, rgb(241 245 248 / 94%) 0%, rgb(241 245 248 / 82%) 48%, rgb(241 245 248 / 18%) 100%),
+				url("assets/rs=w_1279,m (1).webp") center / cover,
+				var(--soft);
 		}
 		.eyebrow {
 			margin: 0 0 14px;
 			font-size: .78rem;
-			font-weight: 750;
+			font-weight: 600;
 			letter-spacing: .14em;
 			text-transform: uppercase;
 		}
@@ -83,7 +122,7 @@
 			margin: 0;
 			font-size: clamp(2.8rem, 7vw, 5.5rem);
 			line-height: 1.04;
-			letter-spacing: -.065em;
+			letter-spacing: -.035em;
 		}
 		.hero p:not(.eyebrow) {
 			max-width: 590px;
@@ -96,11 +135,11 @@
 			padding: 12px 21px;
 			border-radius: var(--radius);
 			background: var(--accent);
-			color: white;
-			font-weight: 650;
+			color: var(--paper);
+			font-weight: 550;
 		}
 		.button:hover {
-			background: #5142e8;
+			background: var(--accent-hover);
 		}
 		.search-form {
 			display: grid;
@@ -109,25 +148,25 @@
 			max-width: 900px;
 			margin-top: 36px;
 			padding: 20px;
-			border: 1px solid #e8eaf0;
+			border: 1px solid var(--line);
 			border-radius: var(--radius);
-			background: white;
-			box-shadow: 0 12px 35px rgb(32 42 58 / 8%);
+			background: var(--paper);
+			box-shadow: 0 12px 35px rgb(52 68 84 / 8%);
 		}
 		.search-form label {
 			display: grid;
 			gap: 5px;
 			color: var(--muted);
 			font-size: .82rem;
-			font-weight: 650;
+			font-weight: 550;
 		}
 		.search-form input, .search-form select {
 			width: 100%;
 			min-height: 42px;
 			padding: 9px 10px;
-			border: 1px solid #dfe3eb;
+			border: 1px solid var(--field-border);
 			border-radius: var(--radius);
-			background: white;
+			background: var(--paper);
 			color: var(--ink);
 			font: inherit;
 		}
@@ -137,7 +176,7 @@
 			border: 0;
 			cursor: pointer;
 			font: inherit;
-			font-weight: 650;
+			font-weight: 550;
 		}
 		section {
 			padding: 80px 0;
@@ -146,11 +185,31 @@
 			max-width: 620px;
 			margin-bottom: 34px;
 		}
+		[aria-labelledby="slider-heading"] {
+			background: var(--soft);
+		}
+		.slider-heading {
+			max-width: 900px;
+			margin: 0 auto 34px;
+			text-align: center;
+		}
+		.slider-heading .eyebrow {
+			margin-bottom: 8px;
+		}
+		.slider-heading h2 {
+			margin: 0;
+			font-size: clamp(2rem, 5vw, 3.5rem);
+			color: var(--ink);
+		}
+		.slider-heading > p:last-child {
+			max-width: 480px;
+			margin: 10px auto 0;
+			color: var(--muted);
+		}
 		.image-slider {
 			position: relative;
 			width: 100%;
 			overflow: hidden;
-			background: var(--ink);
 		}
 		.slider-track {
 			display: flex;
@@ -192,7 +251,7 @@
 			transform: translateY(-50%);
 		}
 		.slider-control:hover {
-			background: white;
+			background: var(--paper);
 		}
 		.slider-control:focus-visible, .slider-dots button:focus-visible {
 			outline: 3px solid var(--accent);
@@ -212,13 +271,13 @@
 			width: 11px;
 			height: 11px;
 			padding: 0;
-			border: 1px solid white;
+			border: 1px solid var(--paper);
 			border-radius: var(--radius);
-			background: rgb(32 42 58 / 50%);
+			background: rgb(52 68 84 / 50%);
 			cursor: pointer;
 		}
 		.slider-dots button[aria-current="true"] {
-			background: white;
+			background: var(--paper);
 		}
 		.logo-grid {
 			display: grid;
@@ -232,8 +291,17 @@
 		}
 		.logo-item img {
 			width: min(100%, 180px);
-			height: 64px;
+			height: 100px;
 			object-fit: contain;
+		}
+		.logo-dots {
+			display: none;
+		}
+		.logo-page {
+			display: contents;
+		}
+		.logo-page[aria-hidden="true"] {
+			display: none;
 		}
 		.story-list {
 			display: grid;
@@ -262,7 +330,7 @@
 			margin: 0 0 12px;
 			font-size: clamp(2rem, 4vw, 3rem);
 			line-height: 1.15;
-			letter-spacing: -.05em;
+			letter-spacing: -.025em;
 		}
 		.heading > p:last-child, .card p, .about-copy p {
 			color: var(--muted);
@@ -274,13 +342,13 @@
 		}
 		.card {
 			padding: 25px;
-			border: 1px solid #e8eaf0;
+			border: 1px solid var(--line);
 			border-radius: var(--radius);
 		}
 		.number {
 			color: var(--accent);
 			font-size: .8rem;
-			font-weight: 750;
+			font-weight: 600;
 			letter-spacing: .08em;
 		}
 		h3 {
@@ -303,36 +371,36 @@
 		}
 		.contact {
 			display: grid;
-			grid-template-columns: 150px 1fr auto;
+			grid-template-columns: 220px 1fr auto;
 			align-items: center;
 			gap: 28px;
 			padding: 32px;
 			border-radius: var(--radius);
-			background: #252e40;
-			color: white;
+			background: #e8eff4;
+			color: var(--ink);
 		}
 		.contact-photo {
-			width: 150px;
-			height: 170px;
+			width: 220px;
+			height: 250px;
 			border-radius: var(--radius);
 			object-fit: cover;
 			object-position: center 30%;
 		}
 		.contact p {
 			margin: 0;
-			color: #cbd1dc;
+			color: var(--muted);
 		}
 		.contact .eyebrow {
-			color: #b7adff;
+			color: var(--accent);
 		}
 		.contact .button {
 			flex: 0 0 auto;
-			background: white;
+			background: var(--paper);
 			color: var(--ink);
 		}
 		footer {
 			padding: 56px 0 24px;
-			border-top: 1px solid #e8eaf0;
+			border-top: 1px solid var(--line);
 			color: var(--muted);
 			font-size: .9rem;
 			background: var(--soft);
@@ -361,15 +429,15 @@
 			gap: 5px;
 			color: var(--ink);
 			font-size: .84rem;
-			font-weight: 650;
+			font-weight: 550;
 		}
 		.footer-form input, .footer-form textarea {
 			width: 100%;
 			min-height: 44px;
 			padding: 9px 11px;
-			border: 1px solid #dfe3eb;
+			border: 1px solid var(--field-border);
 			border-radius: var(--radius);
-			background: white;
+			background: var(--paper);
 			color: var(--ink);
 			font: inherit;
 		}
@@ -384,7 +452,7 @@
 			border: 0;
 			cursor: pointer;
 			font: inherit;
-			font-weight: 650;
+			font-weight: 550;
 		}
 		.footer-note, .form-status {
 			margin: 12px 0 0;
@@ -404,24 +472,38 @@
 		}
 		.footer-details a {
 			color: var(--ink);
-			font-weight: 650;
+			font-weight: 550;
 		}
 		.footer-hours {
 			color: var(--ink);
 		}
-		.footer-map {
+		.map-section {
+			padding: 0;
+		}
+		.map-section iframe {
 			display: block;
 			width: 100%;
-			min-height: 280px;
+			height: clamp(300px, 40vw, 480px);
 			border: 0;
-			border-radius: var(--radius);
 		}
 		.footer-row {
 			display: flex;
+			align-items: center;
 			justify-content: space-between;
 			gap: 20px;
 			padding-top: 20px;
-			border-top: 1px solid #dfe3eb;
+			border-top: 1px solid var(--field-border);
+		}
+		.footer-brand {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+		}
+		.footer-brand img {
+			display: block;
+			width: 150px;
+			max-height: 48px;
+			object-fit: contain;
 		}
 		.footer-row p {
 			margin: 0;
@@ -445,7 +527,7 @@
 			width: 40px;
 			height: 40px;
 			place-items: center;
-			border: 1px solid #dfe3eb;
+			border: 1px solid var(--field-border);
 			border-radius: 50%;
 			color: var(--ink);
 		}
@@ -458,6 +540,41 @@
 			fill: currentColor;
 		}
 		@media (max-width: 700px) {
+			nav {
+				flex-wrap: nowrap;
+				gap: 0 16px;
+				padding-top: 8px;
+			}
+			.nav-toggle {
+				display: block;
+			}
+			.nav-menu {
+				position: absolute;
+				top: 100%;
+				right: 0;
+				z-index: 10;
+				display: none;
+				width: min(300px, calc(100vw - 28px));
+				align-items: stretch;
+				gap: 16px;
+				padding: 16px;
+				border: 1px solid var(--line);
+				border-radius: var(--radius);
+				background: var(--paper);
+				box-shadow: 0 12px 30px rgb(52 68 84 / 14%);
+			}
+			.nav-menu.is-open {
+				display: flex;
+				flex-direction: column;
+			}
+			.links {
+				align-items: stretch;
+				flex-direction: column;
+				gap: 0;
+			}
+			.links a {
+				padding: 8px 0;
+			}
 			.hero {
 				padding: 78px 0 86px;
 			}
@@ -479,41 +596,86 @@
 				height: 240px;
 			}
 			.logo-grid {
-				grid-template-columns: repeat(2, minmax(0, 1fr));
+				display: flex;
+				gap: 12px;
+				overflow-x: auto;
+				scroll-snap-type: x mandatory;
+				scrollbar-width: none;
+				scroll-behavior: smooth;
+			}
+			.logo-grid::-webkit-scrollbar {
+				display: none;
+			}
+			.logo-page {
+				display: flex;
+				flex: 0 0 70%;
+				gap: 8px;
+				align-items: center;
+				opacity: 0.5;
+				scroll-snap-align: center;
+				transition: opacity 250ms ease;
+			}
+			.logo-page[aria-hidden="true"] {
+				display: flex;
+			}
+			.logo-page.is-active {
+				opacity: 1;
+			}
+			.logo-page .logo-item {
+				flex: 1 1 50%;
+				min-width: 0;
+			}
+			.logo-dots {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+				margin-top: 16px;
+			}
+			.logo-dots button {
+				width: 10px;
+				height: 10px;
+				padding: 0;
+				border: 1px solid var(--accent);
+				border-radius: 50%;
+				background: transparent;
+				cursor: pointer;
+			}
+			.logo-dots button[aria-current="true"] {
+				background: var(--accent);
+			}
+			.logo-dots button:focus-visible {
+				outline: 3px solid var(--accent);
+				outline-offset: 3px;
 			}
 			.search-form {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
 			.contact {
-				grid-template-columns: 90px 1fr;
-				align-items: start;
+				grid-template-columns: 1fr;
+				align-items: center;
+				justify-items: center;
+				text-align: center;
 				gap: 18px;
 			}
 			.contact-photo {
-				width: 90px;
-				height: 110px;
+				width: 90%;
+				height: auto;
 			}
 			.contact .button {
-				grid-column: 2;
+				grid-column: auto;
 			}
 			.footer-content {
 				grid-template-columns: 1fr;
 				gap: 32px;
 			}
-			.nav-button {
-				display: none;
-			}
-			.links {
-				gap: 14px;
-			}
+			.nav-button { align-self: flex-start; }
 		}
 		@media (max-width: 440px) {
 			.container {
 				width: calc(100% - 28px);
 			}
-			.links {
-				gap: 10px;
-				font-size: .8rem;
+			.brand img {
+				width: 180px;
 			}
 			.search-form {
 				grid-template-columns: 1fr;
@@ -533,14 +695,22 @@
 <body>
 	<header>
 		<nav class="container" aria-label="Main navigation">
-			<a class="brand" href="#home">Marci Metzger Homes<span>.</span></a>
+			<a class="brand" href="#home"><img src="assets/site_logo.webp" alt="Marci Metzger Homes"></a>
+		<button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</button>
+		<div class="nav-menu" id="primary-navigation">
 			<div class="links">
 				<a href="#services">Homes</a>
-				<a href="#about">About</a>
+				<a href="#about">About Us</a>
+				<a href="#about">Listings</a>
 				<a href="#contact">Contact</a>
 			</div>
 			<a class="nav-button" href="#contact">Find your home</a>
-		</nav>
+		</div>
+	</nav>
 	</header>
 	<main>
 		<section class="hero" id="home">
@@ -562,43 +732,58 @@
 			</div>
 		</section>
 		<section class="logo-strip" aria-label="What you can expect">
-			<div class="container logo-grid">
-				<div class="logo-item"><img src="https://placehold.co/360x128?text=Logo+1" alt="Placeholder logo 1"></div>
-				<div class="logo-item"><img src="https://placehold.co/360x128?text=Logo+2" alt="Placeholder logo 2"></div>
-				<div class="logo-item"><img src="https://placehold.co/360x128?text=Logo+3" alt="Placeholder logo 3"></div>
-				<div class="logo-item"><img src="https://placehold.co/360x128?text=Logo+4" alt="Placeholder logo 4"></div>
+			<div class="container logo-grid" id="partner-logo-slider" role="region" aria-label="Partner logos">
+				<div class="logo-page">
+					<div class="logo-item"><img src="assets/logo_1.webp" alt="The Ridge Realty Group"></div>
+					<div class="logo-item"><img src="assets/logo_2.webp" alt="Real estate company logo"></div>
+				</div>
+				<div class="logo-page">
+					<div class="logo-item"><img src="assets/logo_3.webp" alt="REALTOR"></div>
+					<div class="logo-item"><img src="assets/logo_4.webp" alt="Pahrump Valley Chamber of Commerce"></div>
+				</div>
+			</div>
+			<div class="container logo-dots" role="group" aria-label="Choose a partner logo">
+				<button type="button" aria-label="Show partner logos 1 and 2" aria-current="true"></button>
+				<button type="button" aria-label="Show partner logos 3 and 4" aria-current="false"></button>
 			</div>
 		</section>
 		<section aria-label="Your home-buying journey">
 			<div class="container story-list">
 				<article class="story">
-					<img class="story-image" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Bright, welcoming living room">
-					<div class="story-copy"><p class="eyebrow">A home that fits</p><h2>Start with what matters to you.</h2><p>Share the details that make a place feel right, from the way you like to spend your mornings to the space you need to grow.</p></div>
+					<img class="story-image" src="assets\rs=w_600,h_300,cg_true.webp" alt="Bright, welcoming living room">
+					<div class="story-copy"><p class="eyebrow">A home that fits</p><h2>Top Residential Sales Last 5 Years</h2><p>We helped nearly 90 clients in 2021, and closed 28.5 million in sales! Our team works hard everyday to grow and learn, so that we may continue to excel in our market. Our clients deserve our best, & we want to make sure our best is better every year.</p></div>
 				</article>
 				<article class="story">
-					<img class="story-image" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Tree-lined neighborhood street at sunset">
-					<div class="story-copy"><p class="eyebrow">Local perspective</p><h2>Find your place in the neighborhood.</h2><p>Explore the character of each area, with guidance on the everyday details that help you picture life there.</p></div>
+					<img class="story-image" src="assets\cr=w_600,h_300.webp" alt="Tree-lined neighborhood street at sunset">
+					<div class="story-copy"><p class="eyebrow">Local perspective</p><h2>Don't Just List it...</h2><p>Get it SOLD! We exhaust every avenue to ensure our listings are at the fingertips of every possible buyer, getting you top dollar for your home.</p></div>
 				</article>
 				<article class="story">
-					<img class="story-image" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Modern home interior with natural light">
-					<div class="story-copy"><p class="eyebrow">Confident next steps</p><h2>Move forward with clarity.</h2><p>From the first viewing through closing, get thoughtful support and clear answers at every step.</p></div>
+					<img class="story-image" src="assets\rs=w_600,h_300,cg_true,m.webp" alt="Modern home interior with natural light">
+					<div class="story-copy"><p class="eyebrow">Confident next steps</p><h2>Guide to Buyers</h2><p>Nobody knows the market like we do. Enjoy having a pro at your service. Market analysis, upgrades lists, contractors on speed dial, & more!</p></div>
 				</article>
 			</div>
 		</section>
-		<section class="image-slider" aria-label="Explore the possibilities">
-			<div class="slider-track" id="home-slider" aria-live="polite">
-				<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Bright living room with a comfortable seating area">
-				<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Modern home with an open-plan interior" loading="lazy">
-				<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Light-filled contemporary home" loading="lazy">
-				<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Welcoming home interior with warm details" loading="lazy">
+		<section aria-labelledby="slider-heading">
+			<div class="container slider-heading">
+				<p class="eyebrow">Picture your next chapter</p>
+				<h2 id="slider-heading">A home for the way you live.</h2>
+				<p>Explore welcoming spaces and find the one that feels right.</p>
 			</div>
-			<button class="slider-control slider-prev" type="button" aria-label="Previous image">&#8249;</button>
-			<button class="slider-control slider-next" type="button" aria-label="Next image">&#8250;</button>
-			<div class="slider-dots" aria-label="Choose an image">
-				<button type="button" aria-label="Show image 1" aria-current="true"></button>
-				<button type="button" aria-label="Show image 2" aria-current="false"></button>
-				<button type="button" aria-label="Show image 3" aria-current="false"></button>
-				<button type="button" aria-label="Show image 4" aria-current="false"></button>
+			<div class="image-slider">
+				<div class="slider-track" id="home-slider" aria-live="polite">
+					<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Bright living room with a comfortable seating area">
+					<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Modern home with an open-plan interior" loading="lazy">
+					<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Light-filled contemporary home" loading="lazy">
+					<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Welcoming home interior with warm details" loading="lazy">
+				</div>
+				<button class="slider-control slider-prev" type="button" aria-label="Previous image">&#8249;</button>
+				<button class="slider-control slider-next" type="button" aria-label="Next image">&#8250;</button>
+				<div class="slider-dots" aria-label="Choose an image">
+					<button type="button" aria-label="Show image 1" aria-current="true"></button>
+					<button type="button" aria-label="Show image 2" aria-current="false"></button>
+					<button type="button" aria-label="Show image 3" aria-current="false"></button>
+					<button type="button" aria-label="Show image 4" aria-current="false"></button>
+				</div>
 			</div>
 		</section>
 		<section id="services">
@@ -626,12 +811,21 @@
 		</section>
 		<section id="contact">
 			<div class="container contact">
-				<img class="contact-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Portrait of a real estate agent">
+				<img class="contact-photo" src="assets\rs=w_365,h_365,cg_true.webp" alt="Portrait of a real estate agent">
 				<div><p class="eyebrow">Ready to make a move?</p><h2>Let’s find your next home.</h2><p>Call our realtor to talk about your search or ask about a property.</p></div>
 				<a class="button" href="tel:+12069196886">Call 206-919-6886&nbsp; →</a>
 			</div>
 		</section>
 	</main>
+	<section class="map-section" aria-label="Our location">
+		<iframe
+			title="Google Map showing 3190 HW-160, Suite F, Pahrump, Nevada 89048"
+			src="https://www.google.com/maps?q=3190+HW-160%2C+Suite+F%2C+Pahrump%2C+Nevada+89048%2C+United+States&amp;output=embed"
+			loading="lazy"
+			referrerpolicy="no-referrer-when-downgrade"
+			allowfullscreen>
+		</iframe>
+	</section>
 	<footer>
 		<div class="container footer-content">
 			<section aria-labelledby="footer-contact-heading">
@@ -656,18 +850,13 @@
 				<p class="footer-hours"><strong>Open today</strong><br>08:00 am – 07:00 pm</p>
 				<p><strong>Open daily</strong><br>8:00 am - 7:00 pm</p>
 				<p>Appointments outside office hours available upon request. Just call!</p>
-				<iframe
-					class="footer-map"
-					title="Google Map showing 3190 HW-160, Suite F, Pahrump, Nevada 89048"
-					src="https://www.google.com/maps?q=3190+HW-160%2C+Suite+F%2C+Pahrump%2C+Nevada+89048%2C+United+States&amp;output=embed"
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-					allowfullscreen>
-				</iframe>
 			</section>
 		</div>
 		<div class="container footer-row">
-			<p>© 2025 Marci Metzger Homes. All rights reserved.</p>
+			<div class="footer-brand">
+				<a href="#home"><img src="assets/site_logo.webp" alt="Marci Metzger Homes"></a>
+				<p>© 2025 Marci Metzger Homes. All rights reserved.</p>
+			</div>
 			<div class="footer-links">
 				<div class="footer-social-links" role="group" aria-label="Social media">
 					<a href="https://www.facebook.com/MarciHomes/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -688,6 +877,105 @@
 		</div>
 	</footer>
 	<script>
+		(() => {
+			const track = document.querySelector('#partner-logo-slider');
+			const dots = [...document.querySelectorAll('.logo-dots button')];
+			const originalPages = [...track.querySelectorAll('.logo-page')];
+			const firstClone = originalPages[0].cloneNode(true);
+			const lastClone = originalPages[originalPages.length - 1].cloneNode(true);
+			firstClone.setAttribute('aria-hidden', 'true');
+			lastClone.setAttribute('aria-hidden', 'true');
+			track.prepend(lastClone);
+			track.append(firstClone);
+
+			const pages = [...track.querySelectorAll('.logo-page')];
+			let settleTimer;
+
+			const nearestPage = () => {
+				const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+				return pages.reduce((nearest, page, index) => {
+					const pageCenter = page.getBoundingClientRect().left + page.clientWidth / 2;
+					const nearestCenter = pages[nearest].getBoundingClientRect().left + pages[nearest].clientWidth / 2;
+					return Math.abs(pageCenter - trackCenter) < Math.abs(nearestCenter - trackCenter)
+						? index : nearest;
+				}, 0);
+			};
+
+			const targetLeft = (page) => {
+				const trackRect = track.getBoundingClientRect();
+				const pageRect = page.getBoundingClientRect();
+				return track.scrollLeft + pageRect.left - trackRect.left
+					- (track.clientWidth - page.clientWidth) / 2;
+			};
+
+			const jumpTo = (page) => {
+				const previousBehavior = track.style.scrollBehavior;
+				track.style.scrollBehavior = 'auto';
+				track.scrollLeft = targetLeft(page);
+				track.style.scrollBehavior = previousBehavior;
+			};
+
+			const updateActivePage = (index = nearestPage()) => {
+				pages.forEach((page, pageIndex) => {
+					page.classList.toggle('is-active', pageIndex === index);
+				});
+				const dotIndex = index === 0 ? 1 : index === pages.length - 1 ? 0 : index - 1;
+				dots.forEach((dot, dotIndexInList) => {
+					dot.setAttribute('aria-current', String(dotIndexInList === dotIndex));
+				});
+			};
+
+			const settle = () => {
+				const index = nearestPage();
+				if (index === 0) jumpTo(pages[originalPages.length]);
+				if (index === pages.length - 1) jumpTo(pages[1]);
+				updateActivePage(index === 0 ? originalPages.length : index === pages.length - 1 ? 1 : index);
+			};
+
+			dots.forEach((dot, index) => {
+				dot.addEventListener('click', () => {
+					track.scrollTo({ left: targetLeft(pages[index + 1]), behavior: 'smooth' });
+				});
+			});
+
+			track.addEventListener('scroll', () => {
+				updateActivePage();
+				clearTimeout(settleTimer);
+				settleTimer = setTimeout(settle, 150);
+			}, { passive: true });
+
+			track.addEventListener('scrollend', settle);
+			requestAnimationFrame(() => {
+				jumpTo(pages[1]);
+				updateActivePage(1);
+			});
+			window.addEventListener('resize', () => jumpTo(pages[nearestPage()]));
+		})();
+
+		(() => {
+			const toggle = document.querySelector('.nav-toggle');
+			const menu = document.querySelector('.nav-menu');
+
+			const closeMenu = () => {
+				toggle.setAttribute('aria-expanded', 'false');
+				toggle.setAttribute('aria-label', 'Open navigation menu');
+				menu.classList.remove('is-open');
+			};
+
+			toggle.addEventListener('click', () => {
+				const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+				toggle.setAttribute('aria-expanded', String(!isOpen));
+				toggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+				menu.classList.toggle('is-open', !isOpen);
+			});
+
+			menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape') closeMenu();
+			});
+			window.matchMedia('(min-width: 701px)').addEventListener('change', closeMenu);
+		})();
+
 		document.querySelector('#footer-contact-form').addEventListener('submit', (event) => {
 			event.preventDefault();
 			document.querySelector('#footer-form-status').textContent =
