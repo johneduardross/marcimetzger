@@ -358,43 +358,66 @@
 		.card p {
 			margin: 0;
 		}
+		.service-highlights {
+			background: var(--soft);
+		}
+		.service-highlights .card-image {
+			display: block;
+			width: calc(100% + 50px);
+			height: 180px;
+			margin: -25px -25px 20px;
+			border-radius: var(--radius) var(--radius) 0 0;
+			object-fit: cover;
+		}
+		.service-highlights .heading {
+			margin: 0 auto 34px;
+			text-align: center;
+		}
 		.about {
 			background: var(--soft);
 		}
 		.about-layout {
 			display: grid;
-			grid-template-columns: .8fr 1.2fr;
-			gap: 64px;
+			grid-template-columns: .9fr 1.1fr;
+			align-items: center;
+			gap: 56px;
+		}
+		.about-photo {
+			display: block;
+			width: 100%;
+			height: 420px;
+			border-radius: 18px;
+			object-fit: cover;
+			object-position: center 30%;
 		}
 		.about-copy p {
 			margin: 0 0 15px;
 		}
 		.contact {
 			display: grid;
-			grid-template-columns: 220px 1fr auto;
+			grid-template-columns: 1fr auto;
 			align-items: center;
-			gap: 28px;
-			padding: 32px;
-			border-radius: var(--radius);
-			background: #e8eff4;
-			color: var(--ink);
+			gap: 36px;
+			padding: 48px 52px;
+			background: transparent;
+			color: var(--paper);
 		}
-		.contact-photo {
-			width: 220px;
-			height: 250px;
-			border-radius: var(--radius);
-			object-fit: cover;
-			object-position: center 30%;
+		#contact {
+			background:
+				linear-gradient(90deg, rgb(24 38 49 / 82%), rgb(24 38 49 / 48%)),
+				url("assets/cr=w_600,h_300.webp") center / cover;
 		}
 		.contact p {
 			margin: 0;
-			color: var(--muted);
+			color: rgb(255 255 255 / 76%);
 		}
 		.contact .eyebrow {
-			color: var(--accent);
+			color: #b7d5e8;
+		}
+		.contact h2 {
+			color: var(--paper);
 		}
 		.contact .button {
-			flex: 0 0 auto;
 			background: var(--paper);
 			color: var(--ink);
 		}
@@ -668,6 +691,32 @@
 				grid-template-columns: 1fr;
 				gap: 32px;
 			}
+			.footer-content > section,
+			.footer-details {
+				text-align: center;
+			}
+			.footer-form label {
+				text-align: center;
+			}
+			.footer-form input,
+			.footer-form textarea {
+				text-align: center;
+			}
+			.footer-row,
+			.footer-brand,
+			.footer-links,
+			.footer-links > div:not(.footer-social-links) {
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+			.footer-brand {
+				gap: 10px;
+			}
+			.footer-links {
+				gap: 14px;
+			}
 			.nav-button { align-self: flex-start; }
 		}
 		@media (max-width: 440px) {
@@ -679,9 +728,6 @@
 			}
 			.search-form {
 				grid-template-columns: 1fr;
-			}
-			.footer-row {
-				flex-direction: column;
 			}
 			.footer-form {
 				grid-template-columns: 1fr;
@@ -771,10 +817,13 @@
 			</div>
 			<div class="image-slider">
 				<div class="slider-track" id="home-slider" aria-live="polite">
-					<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Bright living room with a comfortable seating area">
-					<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Modern home with an open-plan interior" loading="lazy">
-					<img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Light-filled contemporary home" loading="lazy">
-					<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="Welcoming home interior with warm details" loading="lazy">
+					<img src="assets/gallery_image_1.webp" alt="Gallery image 1">
+					<img src="assets/gallery_image_2.webp" alt="Gallery image 2" loading="lazy">
+					<img src="assets/gallery_image_3.webp" alt="Gallery image 3" loading="lazy">
+					<img src="assets/gallery_image_4.webp" alt="Gallery image 4" loading="lazy">
+					<img src="assets/gallery_image_5.webp" alt="Gallery image 5" loading="lazy">
+					<img src="assets/gallery_image_6.webp" alt="Gallery image 6" loading="lazy">
+					<img src="assets/gallery_image_7.webp" alt="Gallery image 7" loading="lazy">
 				</div>
 				<button class="slider-control slider-prev" type="button" aria-label="Previous image">&#8249;</button>
 				<button class="slider-control slider-next" type="button" aria-label="Next image">&#8250;</button>
@@ -783,27 +832,69 @@
 					<button type="button" aria-label="Show image 2" aria-current="false"></button>
 					<button type="button" aria-label="Show image 3" aria-current="false"></button>
 					<button type="button" aria-label="Show image 4" aria-current="false"></button>
+					<button type="button" aria-label="Show image 5" aria-current="false"></button>
+					<button type="button" aria-label="Show image 6" aria-current="false"></button>
+					<button type="button" aria-label="Show image 7" aria-current="false"></button>
 				</div>
 			</div>
 		</section>
 		<section id="services">
 			<div class="container">
 				<div class="heading">
-					<p class="eyebrow">Featured properties</p>
-					<h2>Find a place to make your own.</h2>
-					<p>Browse a few of our favorite homes currently on the market.</p>
+					<p class="eyebrow">How we can help</p>
+					<h2>Support for every step of your move.</h2>
+					<p>Whether you’re buying or selling, get thoughtful local guidance tailored to you.</p>
 				</div>
 				<div class="grid">
-					<article class="card"><span class="number">FOR SALE · $685,000</span><h3>Sunny craftsman retreat</h3><p>3 beds · 2 baths · 1,840 sq ft<br>Maplewood · A welcoming home with a bright kitchen and a leafy backyard.</p></article>
-					<article class="card"><span class="number">FOR SALE · $925,000</span><h3>Modern city townhouse</h3><p>4 beds · 3 baths · 2,210 sq ft<br>North Park · Clean lines, generous living space, and a rooftop view.</p></article>
-					<article class="card"><span class="number">FOR SALE · $540,000</span><h3>Coastal cottage</h3><p>2 beds · 2 baths · 1,260 sq ft<br>Seabrook · A relaxed hideaway just a short walk from the water.</p></article>
+					<article class="card">
+						<span class="number">01 · BUY</span>
+						<h3>Find your next home</h3>
+						<p>Explore the market with a local expert who listens to what matters and helps you find the right fit.</p>
+					</article>
+					<article class="card">
+						<span class="number">02 · SELL</span>
+						<h3>Make your next move</h3>
+						<p>Get thoughtful pricing, effective marketing, and steady support from listing through closing.</p>
+					</article>
+					<article class="card">
+						<span class="number">03 · GUIDANCE</span>
+						<h3>Navigate with confidence</h3>
+						<p>Get clear answers, neighborhood insight, and practical advice at every step of your real estate journey.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+		<section class="service-highlights" aria-labelledby="service-highlights-heading">
+			<div class="container">
+				<div class="heading">
+					<p class="eyebrow">The difference is in the details</p>
+					<h2 id="service-highlights-heading">Real estate, centered on you.</h2>
+				</div>
+				<div class="grid">
+					<article class="card">
+						<img class="card-image" src="assets/card_image_1.webp" alt="Welcoming home interior" loading="lazy">
+						<h3>Real Estate Done Right</h3>
+						<p>Nervous about your property adventure? Don’t be. Whether you're getting ready to buy or sell your residence, looking at investment properties, or just curious about the markets, our team ensures you get the best experience possible</p>
+					</article>
+					<article class="card">
+						<img class="card-image" src="assets/card_image_2.webp" alt="Commercial and residential properties" loading="lazy">
+						<h3>Commercial &amp; Residential</h3>
+						<p>Large or small, condo or mansion, we can find it and get at the price that's right. Fixer-uppers? Luxury? We can help with all of it! We live, work, and play in this community. Happy to help you find where to put you hard-earned dollars.</p>
+					</article>
+					<article class="card">
+						<img class="card-image" src="assets/card_image_3.webp" alt="Local real estate expertise" loading="lazy">
+						<h3>Rely on Expertise</h3>
+						<p>If you have questions about affordability, credit, and loan options, trust us to connect you with the right people to get the answers you need in a timely fashion. We make sure you feel confident and educated every step of the way.</p>
+					</article>
 				</div>
 			</div>
 		</section>
 		<section class="about" id="about">
 			<div class="container about-layout">
-				<div><p class="eyebrow">Meet Marc Metzger</p><h2>Nearly three decades of local insight.</h2></div>
+				<img class="about-photo" src="assets/rs=w_365,h_365,cg_true.webp" alt="Marci Metzger, local real estate agent" loading="lazy">
 				<div class="about-copy">
+					<p class="eyebrow">Meet Marci Metzger</p>
+					<h2>Nearly three decades of local insight.</h2>
 					<p>Finding a home is about more than square footage. Marc listens to what matters to you, shares honest local guidance, and helps you find a place that fits the way you live.</p>
 					<p>With nearly 30 years of real estate experience, Marc is here to make the process clear, thoughtful, and a little less overwhelming—from your first viewing to closing day.</p>
 				</div>
@@ -811,8 +902,7 @@
 		</section>
 		<section id="contact">
 			<div class="container contact">
-				<img class="contact-photo" src="assets\rs=w_365,h_365,cg_true.webp" alt="Portrait of a real estate agent">
-				<div><p class="eyebrow">Ready to make a move?</p><h2>Let’s find your next home.</h2><p>Call our realtor to talk about your search or ask about a property.</p></div>
+				<div><p class="eyebrow">Ready to make a move?</p><h2>Let’s find your next home.</h2><p>Call Marci to talk about your search or ask about a property.</p></div>
 				<a class="button" href="tel:+12069196886">Call 206-919-6886&nbsp; →</a>
 			</div>
 		</section>
@@ -843,7 +933,7 @@
 			</section>
 			<section class="footer-details" aria-labelledby="footer-business-heading">
 				<p class="eyebrow">Visit or call</p>
-				<h2 id="footer-business-heading">Marci Metzger - THE RIDGE REALTY GROUP</h2>
+				<h2 id="footer-business-heading">Marci Metzger</h2>
 				<address>3190 HW-160, Suite F<br>Pahrump, Nevada 89048<br>United States</address>
 				<p><a href="tel:+12069196886">(206) 919-6886</a></p>
 				<h3>Office Hours</h3>
